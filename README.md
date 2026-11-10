@@ -4,7 +4,7 @@ A [Herdr](https://herdr.dev) desktop app mod that names your tabs after the work
 
 ![Tabs named by the mod](preview.png)
 
-Tabs you name yourself are left alone. The mod only reads Herdr's live data and renames tabs. It starts no programs, makes no network requests and reads no files.
+Tabs you name yourself are left alone, unless the name is just an agent's, like the "Claude Code" that Herdr's + menu gives new agent tabs. The mod only reads Herdr's live data and renames tabs. It starts no programs, makes no network requests and reads no files.
 
 ## Install
 

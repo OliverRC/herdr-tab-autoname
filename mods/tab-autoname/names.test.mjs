@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { branchLabel, folderLabel, tabName, taskLabel } from "./names.js";
+import { branchLabel, folderLabel, isAgentName, tabName, taskLabel } from "./names.js";
 const H = "/Users/o";
 const shell = { program: { shell: true, name: "zsh" } };
 const claude = { program: { agent: true, name: "Claude Code" }, status: "working" };
@@ -17,4 +17,8 @@ assert.equal(tabName([{ ...claude, terminal: "t1", cwd: `${H}/repo`, branch: "fi
 assert.equal(tabName([{ ...shell, terminal: "t1", cwd: `${H}/a` }, { ...claude, terminal: "t2", cwd: `${H}/b`, title: "✳ Fix" }], H), "Fix (b)");
 assert.equal(tabName([{ mod: "files", terminal: null }], H), null);
 assert.equal(tabName([{ ...shell, terminal: "t1", cwd: `${H}/repo`, branch: "fix/x" }], H), "repo ⎇ fix/x");
+assert.equal(isAgentName("Claude Code", []), true);
+assert.equal(isAgentName("Kimi Code", [{ program: { agent: true, name: "Kimi Code" } }]), true);
+assert.equal(isAgentName("Kimi Code", [shell]), false);
+assert.equal(isAgentName("Release prep", [claude]), false);
 console.log("ok");

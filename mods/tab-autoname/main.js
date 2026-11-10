@@ -1,6 +1,6 @@
 import { View, div } from "gpui-kit";
 import { home, machines, panes, run, setShared, shared, spaces } from "herdr";
-import { tabName } from "./names.js";
+import { isAgentName, tabName } from "./names.js";
 
 // Our own renames also set tab.named, so remember what we wrote: a named tab whose
 // name differs from this was named by the person, and is left alone.
@@ -13,11 +13,12 @@ function sync() {
   const allPanes = panes();
   for (const space of spaces()) {
     for (const tab of space.tabs) {
-      if (tab.named && tab.name !== written[tab.id]) {
+      const tabPanes = allPanes.filter((p) => p.tab === tab.id);
+      if (tab.named && tab.name !== written[tab.id] && !isAgentName(tab.name, tabPanes)) {
         delete next[tab.id];
         continue;
       }
-      const name = tabName(allPanes.filter((p) => p.tab === tab.id), home()) ?? written[tab.id];
+      const name = tabName(tabPanes, home()) ?? written[tab.id];
       if (!name) continue;
       if (name !== tab.name) {
         try {

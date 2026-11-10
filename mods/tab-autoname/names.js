@@ -34,6 +34,12 @@ export function taskLabel(title, cwd) {
   return cut(clean, 32);
 }
 
+// Herdr's + menu opens agent tabs named after the agent, which marks them named: that name isn't a person's.
+export function isAgentName(name, panes) {
+  const lower = (name ?? "").trim().toLowerCase();
+  return IGNORED_TITLES.includes(lower) || panes.some((p) => p.program?.agent && p.program.name?.toLowerCase() === lower);
+}
+
 // Which pane speaks for a tab: its agent, else a running program, else its first shell.
 export function tabName(panes, home) {
   const terminals = panes.filter((p) => p.terminal);

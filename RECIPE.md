@@ -22,7 +22,7 @@ Tabs name themselves after the work in them, as `task (folder ⎇ branch)`, so s
 - Task: the agent's terminal title, with leading spinner glyphs removed. A title is refused, falling back to the program's name, when it is empty, a bare number, the terminal's folder name, a path with no spaces, or a generic name: `claude`, `claude code`, `codex`, `codex cli`, `gemini cli`, `opencode`, `amp code`, `cursor agent`, `new session`, `untitled`.
 - Folder: the last part of the pane's `cwd`, `~` at home.
 - Branch: left out for `main`, `master`, `develop` and `trunk`. Up to 16 characters is shown whole. Longer ones use a ticket key if present (`feat/abc-142-checkout-rounding` gives `ABC-142`), else the last `/` segment, cut to 16.
-- A tab someone named keeps its name. Clearing it with `tab.rename {id, name: ""}` hands it back.
+- A tab someone named keeps its name. Clearing it with `tab.rename {id, name: ""}` hands it back. A name that is only a generic agent title or the name of the agent running in the tab, as the + menu sets, does not count as named.
 - A tab with no name to compute keeps what it has.
 - No clicks or keys.
 
